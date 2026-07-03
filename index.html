@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SleepBand — Better Sleep, Better Life</title>
+<meta name="description" content="SleepBand is a smart headband that helps you relax, track your sleep, and wake up gently. Better sleep, better life.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="SleepBand — Better Sleep, Better Life">
+<meta property="og:description" content="SleepBand is a smart headband that helps you relax, track your sleep, and wake up gently. Better sleep, better life.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SleepBand — Better Sleep, Better Life">
+<meta name="twitter:description" content="SleepBand is a smart headband that helps you relax, track your sleep, and wake up gently. Better sleep, better life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home" aria-label="SleepBand home">
+      <span class="moon-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z" fill="#E8D49C"/></svg>
+      </span>
+      SleepBand
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#product">Product</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#buy" class="btn btn-moon">Buy now</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO (Home) ===== -->
+<section class="hero" id="home" style="padding:0">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="meteors" aria-hidden="true">
+    <span class="meteor" style="--top:-6%;--left:78%;--duration:7.5s;--delay:.5s"></span>
+    <span class="meteor" style="--top:-16%;--left:52%;--duration:9s;--delay:3.4s"></span>
+    <span class="meteor" style="--top:4%;--left:96%;--duration:6.2s;--delay:6.1s"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Smart sleep headband</span>
+      <h1>Better sleep,<br><em>better life.</em></h1>
+      <p class="lead">SleepBand helps you unwind, tracks your rest through the night, and wakes you gently — no loud, stressful alarms.</p>
+      <div class="hero-actions">
+        <a href="#buy" class="btn btn-moon">Get SleepBand</a>
+        <a href="#product" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="dots" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+        <span>Loved by 12,000+ better sleepers</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="moon-glow"></div>
+      <div class="moon-big"><span class="eclipse"></span></div>
+      <!-- headband illustration -->
+      <svg class="band" id="bandSvg" viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bandg" x1="0" y1="0" x2="300" y2="0">
+            <stop offset="0" stop-color="#2A3360"/><stop offset="0.5" stop-color="#3B4684"/><stop offset="1" stop-color="#2A3360"/>
+          </linearGradient>
+        </defs>
+        <path d="M14 70 C 14 18, 286 18, 286 70" stroke="url(#bandg)" stroke-width="30" stroke-linecap="round"/>
+        <path d="M14 70 C 14 26, 286 26, 286 70" stroke="#A7B0F0" stroke-width="3" opacity="0.5"/>
+        <g id="moonCharm" class="charm" tabindex="0" role="slider" aria-label="Moon charm — drag or use arrow keys to slide the big moon" aria-valuemin="-1" aria-valuemax="1" aria-valuenow="0">
+          <circle cx="150" cy="34" r="15" fill="#0F1430"/>
+          <path d="M156 34a8 8 0 1 1-7.4-7.9A6 6 0 0 0 156 34Z" fill="#E8D49C"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS (the sleep problem) ===== -->
+<section class="stats" id="problem">
+  <div class="wrap">
+    <div class="intro reveal">
+      <span class="eyebrow" style="color:var(--gold)">The sleep problem is real</span>
+      <h2>Most of us aren't sleeping enough.</h2>
+      <p>Late nights, endless screens, and constant stress. SleepBand is built for the people who need their rest back.</p>
+    </div>
+    <div class="stat reveal">
+      <div class="num">8 in 10</div>
+      <div class="lbl">teenagers don't get enough sleep</div>
+      <div class="src">Source: National Sleep Foundation</div>
+    </div>
+    <div class="stat reveal">
+      <div class="num">1 in 3</div>
+      <div class="lbl">adults sleep less than they need</div>
+      <div class="src">Source: CDC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES (Product) ===== -->
+<section class="features" id="product">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What it does</span>
+      <h2>One soft headband. Three ways to sleep better.</h2>
+      <p>Comfort, technology, and health brought together in a single device you can wear all night.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 12h2l2-6 4 14 3-9 2 4h5"/></svg>
+        </div>
+        <h3>Relaxing sounds</h3>
+        <p>Calming soundscapes help you switch off and fall asleep faster, right from the band.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
+        </div>
+        <h3>Sleep monitoring</h3>
+        <p>Tracks your sleep quality through the night so you finally understand your rest.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M5 11a7 7 0 0 1 14 0c0 4 1.5 5 1.5 5H3.5S5 15 5 11Z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+        </div>
+        <h3>Gentle wake-up</h3>
+        <p>Wakes you softly with light vibrations — no loud, stressful alarms to jolt you awake.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT / WHY US ===== -->
+<section class="why" id="about">
+  <div class="wrap">
+    <div class="why-visual reveal" aria-hidden="true">
+      <span class="ring r0"></span><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+      <span class="mini-moon"></span>
+      <span class="orbit o0"><span class="planet mercury"></span></span>
+      <span class="orbit o1"><span class="planet venus"></span></span>
+      <span class="orbit o2"><span class="planet earth"></span></span>
+      <span class="orbit o3"><span class="planet mars"></span></span>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Why SleepBand</span>
+      <h2 class="sec-head" style="color:var(--navy);font-size:clamp(2rem,4vw,3rem)">Ordinary alarms wake you with stress. Apps only guess. SleepBand does all three — gently.</h2>
+      <ul class="why-list">
+        <li><span class="num">01</span><div><h3>Comfort</h3><p>A soft headband you barely feel, designed to be worn comfortably all night long.</p></div></li>
+        <li><span class="num">02</span><div><h3>Technology</h3><p>Real sleep tracking and a smart, gentle wake-up. No guessing — just data you can trust.</p></div></li>
+        <li><span class="num">03</span><div><h3>Health</h3><p>Better rest means a better mood, sharper focus, and a genuinely better life.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Real reviews</span>
+      <h2>People are waking up rested again.</h2>
+    </div>
+    <div class="grid">
+      <div class="quote reveal">
+        <div class="stars-row" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"I used to dread my alarm. Now I wake up to a soft buzz and actually feel ready for the day."</p>
+        <div class="who"><span class="av" aria-hidden="true"></span><div><b>Marta R.</b><span>Student, 19</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars-row" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"The sleep tracking showed me why I was so tired. Two weeks in and my focus at work is back."</p>
+        <div class="who"><span class="av" aria-hidden="true"></span><div><b>Daniel S.</b><span>Designer, 34</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars-row" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"So light I forget I'm wearing it. The relaxing sounds knock me out in minutes every night."</p>
+        <div class="who"><span class="av" aria-hidden="true"></span><div><b>Inês P.</b><span>Nurse, 41</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUY / PRICING ===== -->
+<section class="buy" id="buy">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Get yours</span>
+      <h2 class="sec-head" style="color:var(--navy);font-size:clamp(2rem,4vw,3rem)">Start sleeping better tonight.</h2>
+      <p style="color:var(--muted);margin-top:16px;max-width:42ch;font-size:1.1rem">One simple device, free shipping, and a 30-night trial. If you don't sleep better, send it back.</p>
+      <div class="hero-actions" style="margin-top:28px">
+        <a href="#contact" class="btn btn-primary">Order SleepBand</a>
+        <a href="#product" class="btn btn-ink-ghost">Compare features</a>
+      </div>
+    </div>
+    <div class="price-card reveal">
+      <span class="glow" aria-hidden="true"></span>
+      <span class="tag">Best value</span>
+      <div class="amount">€129 <small>/ one-time</small></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg> Relaxing sounds library</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg> Full-night sleep tracking</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg> Gentle vibration wake-up</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4 10-10"/></svg> 30-night risk-free trial</li>
+      </ul>
+      <a href="#contact" class="btn btn-moon" style="width:100%;justify-content:center">Order now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--gold)">Contact</span>
+      <h2>Questions? We're awake.</h2>
+      <p class="sub">Tell us what you need and our team will get back to you within one business day.</p>
+      <div class="contact-aside" style="margin-top:30px">
+        <div class="ic-line"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span> hello@sleepband.com</div>
+        <div class="ic-line"><span class="b"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1 3.7 2 2 0 0 1 3 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7 11.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span> +351 234 000 000</div>
+      </div>
+    </div>
+    <form id="contactForm" novalidate>
+      <div class="field"><label for="cname">Name</label><input id="cname" name="name" type="text" placeholder="Your name" required></div>
+      <div class="field"><label for="cmail">Email</label><input id="cmail" name="email" type="email" placeholder="you@email.com" required></div>
+      <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="How can we help you sleep better?"></textarea></div>
+      <button class="btn btn-moon" type="submit" style="margin-top:18px">Send message</button>
+      <div id="formMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap foot-inner">
+    <a class="brand" href="#home" style="color:#fff">
+      <span class="moon-mark" style="background:rgba(232,212,156,.14)" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z" fill="#E8D49C"/></svg></span>
+      SleepBand
+    </a>
+    <small>Better Sleep, Better Life. &nbsp;·&nbsp; © 2026 SleepBand. All rights reserved.</small>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

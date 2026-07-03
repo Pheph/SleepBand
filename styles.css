@@ -1,0 +1,276 @@
+:root{
+  --night:#0F1430;
+  --navy:#1B2350;
+  --navy-2:#2A3360;
+  --peri:#A7B0F0;
+  --peri-soft:#8A93C9;
+  --lav-bg:#EEF1FB;
+  --lav-card:#E8ECFB;
+  --lav-line:#E0E5FA;
+  --gold:#E8D49C;
+  --cream:#FBF3D6;
+  --muted:#5A6394;
+  --white:#FFFFFF;
+  --ink:#1B2350;
+  --maxw:1180px;
+  --radius:22px;
+  --shadow:0 24px 60px -20px rgba(15,20,48,.28);
+  --shadow-sm:0 12px 30px -14px rgba(15,20,48,.30);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--lav-bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'Manrope';font-weight:700;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--peri-soft);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-family:'Manrope';font-weight:700;font-size:.98rem;
+  padding:.85em 1.6em;border-radius:999px;cursor:pointer;border:1.5px solid transparent;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  will-change:transform;
+}
+.btn-primary{background:var(--navy);color:var(--cream);box-shadow:0 14px 28px -12px rgba(27,35,80,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 36px -12px rgba(27,35,80,.8)}
+.btn-moon{background:linear-gradient(120deg,var(--gold),#f3e2b6);color:var(--night);box-shadow:0 14px 30px -10px rgba(232,212,156,.6)}
+.btn-moon:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;border-color:rgba(167,176,240,.5);color:var(--peri)}
+.btn-ghost:hover{background:rgba(167,176,240,.12);transform:translateY(-2px)}
+.btn-ink-ghost{background:transparent;border-color:var(--lav-line);color:var(--navy)}
+.btn-ink-ghost:hover{background:var(--white);transform:translateY(-2px)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ---------- moon logo ---------- */
+.moon-mark{width:34px;height:34px;border-radius:50%;background:var(--navy);display:grid;place-items:center;flex:none}
+.moon-mark svg{width:20px;height:20px}
+
+/* ---------- NAV ---------- */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(15,20,48,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(167,176,240,.14)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:.6em;color:var(--white);font-family:'Fraunces';font-weight:600;font-size:1.3rem;letter-spacing:-.01em}
+.brand .moon-mark{background:rgba(232,212,156,.14)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:#C9CEEC;font-weight:600;font-size:.95rem;transition:color .15s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{display:flex;align-items:center;gap:1rem}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--peri);margin:5px 0;border-radius:2px;transition:.2s}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;background:
+    radial-gradient(120% 80% at 78% 8%, rgba(167,176,240,.16), transparent 60%),
+    radial-gradient(90% 70% at 12% 100%, rgba(42,51,96,.6), transparent 55%),
+    linear-gradient(180deg,#0F1430 0%, #141A3A 60%, #182148 100%);
+  color:#EDEFFA}
+.stars{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.0;animation:tw 5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
+
+/* shooting stars / meteors: subtle diagonal streaks behind the hero copy.
+   Base state is opacity:0 (not mid-keyframe) so that when
+   prefers-reduced-motion turns the animation off entirely, the meteor
+   simply never renders instead of freezing as a static streak. */
+.meteors{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.meteor{
+  position:absolute;
+  top:var(--top,10%);left:var(--left,50%);
+  width:120px;height:2px;
+  background:linear-gradient(90deg, rgba(232,212,156,.85), rgba(167,176,240,.35) 55%, transparent);
+  border-radius:999px;
+  opacity:0;
+  pointer-events:none;
+  transform:rotate(-38deg) translate(0,0);
+  animation:meteor-fall var(--duration,8s) linear infinite;
+  animation-delay:var(--delay,0s);
+}
+.meteor::after{
+  content:"";position:absolute;right:0;top:50%;
+  width:4px;height:4px;margin-top:-2px;
+  border-radius:50%;
+  background:#FBF3D6;
+  box-shadow:0 0 6px 1px rgba(232,212,156,.8);
+}
+/* Motion runs along the streak's own -38deg axis (translate on the local X).
+   A large negative distance sweeps each meteor from the upper-right down to
+   the lower-left, crossing the full height of the hero at any resolution
+   (the .hero clips the overflow). The bright window is brief so meteors read
+   as occasional fast streaks rather than constant traffic. */
+@keyframes meteor-fall{
+  0%{opacity:0;transform:rotate(-38deg) translate(0,0)}
+  1.5%{opacity:1}
+  15%{opacity:1;transform:rotate(-38deg) translate(-1900px,0)}
+  19%,100%{opacity:0;transform:rotate(-38deg) translate(-1900px,0)}
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:84px 0 96px}
+.hero h1{font-size:clamp(2.8rem,6vw,4.6rem);color:#fff;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero p.lead{margin-top:22px;font-size:1.18rem;color:#BFC5E8;max-width:33ch}
+.hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.hero-trust{display:flex;align-items:center;gap:14px;margin-top:30px;color:#9aa2cf;font-size:.9rem}
+.hero-trust .dots{display:flex}
+.hero-trust .dots b{width:30px;height:30px;border-radius:50%;border:2px solid #182148;margin-left:-8px;background:linear-gradient(135deg,var(--peri),var(--peri-soft))}
+.hero-trust .dots b:first-child{margin-left:0}
+
+/* moon + product visual */
+.hero-art{position:relative;display:grid;place-items:center;min-height:380px}
+.moon-glow{position:absolute;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%, rgba(232,212,156,.42), rgba(232,212,156,.08) 45%, transparent 70%);
+  animation:breathe 5.5s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.07);opacity:1}}
+.moon-big{position:relative;width:172px;height:172px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, #fbeec6, #e8d49c 60%, #d8be84);
+  box-shadow:0 0 60px rgba(232,212,156,.5), inset -22px -14px 40px rgba(180,150,90,.45)}
+/* the golden sun disc (.moon-big) and its glow stay fixed; only the dark
+   eclipse disc (.eclipse) slides across it, so dragging the charm progresses
+   the eclipse like a moon crossing the sun. JS sets .eclipse's transform. */
+.moon-big .eclipse{position:absolute;top:-6%;right:-6%;width:86%;height:86%;border-radius:50%;
+  background:#141A3A;box-shadow:inset 8px 6px 18px rgba(0,0,0,.25);
+  transition:transform .1s ease-out}
+/* on release (not dragging), swap to the slower elastic snap-back */
+.moon-big:not(.dragging) .eclipse{transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+/* prefers-reduced-motion: skip the elastic snap-back, jump instantly */
+.moon-big.reduced-motion .eclipse{transition:none}
+.band{position:absolute;bottom:8%;width:300px;max-width:80%}
+.charm{cursor:grab;touch-action:none;transition:transform .1s ease-out}
+/* on release (not dragging), swap to the slower elastic snap-back, matching .moon-big */
+.charm:not(.dragging){transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+/* prefers-reduced-motion: jump instantly instead of the elastic snap-back */
+.charm.reduced-motion{transition:none}
+.charm:focus{outline:none}
+.charm:focus circle{stroke:#E8D49C;stroke-width:2}
+.charm.dragging{cursor:grabbing}
+
+/* ---------- generic section ---------- */
+section{padding:96px 0}
+.sec-head{max-width:60ch}
+.sec-head h2{font-size:clamp(2rem,4vw,3rem);margin-top:14px;color:var(--navy)}
+.sec-head p{margin-top:16px;color:var(--muted);font-size:1.1rem}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--night);color:#E7EAFA}
+.stats .wrap{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:30px;align-items:center}
+.stats .intro h2{color:#fff;font-size:clamp(1.7rem,3vw,2.4rem)}
+.stats .intro p{color:#A9B0DA;margin-top:14px;max-width:34ch}
+.stat{background:linear-gradient(160deg,rgba(167,176,240,.12),rgba(167,176,240,.04));border:1px solid rgba(167,176,240,.18);border-radius:var(--radius);padding:34px 30px}
+.stat .num{font-family:'Fraunces';font-size:3.4rem;color:var(--gold);font-weight:500;line-height:1}
+.stat .lbl{color:#C4C9EC;margin-top:10px;font-size:1rem}
+.stat .src{color:#7F87B8;font-size:.78rem;margin-top:16px}
+
+/* ---------- FEATURES (Product) ---------- */
+.features .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px}
+.card{background:var(--white);border-radius:var(--radius);padding:38px 32px;box-shadow:var(--shadow-sm);border:1px solid #fff;transition:transform .2s ease, box-shadow .2s ease}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.ic{width:64px;height:64px;border-radius:18px;background:var(--lav-card);display:grid;place-items:center;margin-bottom:22px}
+.ic svg{width:30px;height:30px;stroke:var(--navy)}
+.card h3{font-size:1.45rem;color:var(--navy);font-weight:600}
+.card p{margin-top:10px;color:var(--muted)}
+
+/* ---------- ABOUT / WHY ---------- */
+.why{background:var(--white)}
+.why .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.why-visual{position:relative;background:linear-gradient(165deg,#161C3E,#222C5C);border-radius:28px;min-height:380px;overflow:hidden;display:grid;place-items:center}
+/* --- mini sistema solar: o círculo dourado central é o Sol --- */
+.why-visual .mini-moon{width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 40% 36%,#fff4d0,#f0d98f 55%,#e0b95f);box-shadow:0 0 46px 8px rgba(232,212,156,.55)}
+.why-visual .ring{position:absolute;border:1px solid rgba(167,176,240,.2);border-radius:50%}
+.why-visual .r0{width:120px;height:120px}
+.why-visual .r1{width:190px;height:190px}
+.why-visual .r2{width:260px;height:260px}
+.why-visual .r3{width:320px;height:320px}
+/* cada .orbit é um pivô centrado no Sol que gira 360° levando um .planet
+   fixo na borda direita. Órbitas internas giram mais rápido; os
+   animation-delay negativos espalham os ângulos iniciais. CSS puro, linear.
+   Com prefers-reduced-motion a animação para e cada planeta fica parado
+   sobre seu anel às 3h (continua visível). */
+.why-visual .orbit{position:absolute;border-radius:50%;animation:orbit linear infinite}
+.why-visual .planet{position:absolute;top:50%;left:100%;border-radius:50%;transform:translate(-50%,-50%)}
+.why-visual .o0{width:120px;height:120px;animation-duration:9s;animation-delay:-2s}
+.why-visual .o1{width:190px;height:190px;animation-duration:15s;animation-delay:-6s}
+.why-visual .o2{width:260px;height:260px;animation-duration:22s;animation-delay:-11s}
+.why-visual .o3{width:320px;height:320px;animation-duration:30s;animation-delay:-3s}
+.why-visual .mercury{width:8px;height:8px;background:radial-gradient(circle at 35% 30%,#cdc6d2,#8b8590)}
+.why-visual .venus{width:13px;height:13px;background:radial-gradient(circle at 35% 30%,#f6dcaa,#d99b52);box-shadow:0 0 8px rgba(230,180,110,.4)}
+.why-visual .earth{width:14px;height:14px;background:radial-gradient(circle at 35% 30%,#8fe0ff,#2f8fd8 52%,#1f7a58);box-shadow:0 0 9px rgba(90,180,255,.5)}
+.why-visual .mars{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#e88b63,#b5432a)}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.why-list{list-style:none;margin-top:30px;display:grid;gap:22px}
+.why-list li{display:flex;gap:18px;align-items:flex-start}
+.why-list .num{flex:none;width:42px;height:42px;border-radius:12px;background:var(--lav-card);color:var(--navy);font-family:'Fraunces';font-weight:600;display:grid;place-items:center;font-size:1.1rem}
+.why-list h3{font-size:1.2rem;color:var(--navy);font-weight:600}
+.why-list p{color:var(--muted);margin-top:3px}
+
+/* ---------- REVIEWS ---------- */
+.reviews .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px}
+.quote{background:var(--white);border-radius:var(--radius);padding:34px 30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:18px}
+.stars-row{color:var(--gold);letter-spacing:2px;font-size:1.05rem}
+.quote p{color:var(--navy);font-size:1.08rem;line-height:1.55;flex:1}
+.who{display:flex;align-items:center;gap:12px}
+.who .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--peri),var(--peri-soft));flex:none}
+.who b{display:block;color:var(--navy);font-size:.96rem}
+.who span{color:var(--muted);font-size:.85rem}
+
+/* ---------- PRICING / BUY ---------- */
+.buy{background:var(--lav-bg)}
+.buy .wrap{display:grid;grid-template-columns:1fr .85fr;gap:48px;align-items:center}
+.price-card{background:linear-gradient(170deg,#141A3A,#232C5E);color:#EDEFFA;border-radius:28px;padding:44px 40px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.price-card .glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,212,156,.3),transparent 70%)}
+.price-card .tag{display:inline-block;background:rgba(232,212,156,.16);color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.4em .9em;border-radius:999px}
+.price-card .amount{font-family:'Fraunces';font-size:3.6rem;font-weight:500;margin-top:18px}
+.price-card .amount small{font-size:1rem;color:#A9B0DA;font-family:'Manrope';font-weight:600}
+.price-card ul{list-style:none;margin:24px 0 30px;display:grid;gap:12px}
+.price-card li{display:flex;gap:10px;align-items:center;color:#C9CEEC}
+.price-card li svg{width:18px;height:18px;stroke:var(--gold);flex:none}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--night);color:#E7EAFA}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact h2{color:#fff;font-size:clamp(2rem,4vw,3rem)}
+.contact p.sub{color:#A9B0DA;margin-top:16px;max-width:36ch}
+.field{margin-top:18px}
+.field label{display:block;font-size:.85rem;font-weight:600;color:#B7BDE4;margin-bottom:7px}
+.field input,.field textarea{width:100%;background:rgba(167,176,240,.08);border:1px solid rgba(167,176,240,.22);border-radius:14px;padding:14px 16px;color:#fff;font-family:'Manrope';font-size:1rem}
+.field input::placeholder,.field textarea::placeholder{color:#7F87B8}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:rgba(167,176,240,.12)}
+#formMsg{margin-top:16px;color:var(--gold);font-weight:600;min-height:1.4em}
+.contact-aside .ic-line{display:flex;align-items:center;gap:14px;margin-top:22px;color:#C9CEEC}
+.contact-aside .ic-line .b{width:46px;height:46px;border-radius:12px;background:rgba(167,176,240,.12);display:grid;place-items:center;flex:none}
+.contact-aside .ic-line svg{width:20px;height:20px;stroke:var(--peri)}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0B0F26;color:#8b93c0;padding:46px 0}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot-inner .brand{font-size:1.15rem}
+footer small{color:#6b73a0}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .nav-links{position:fixed;inset:72px 0 auto 0;flex-direction:column;background:rgba(15,20,48,.97);padding:24px 28px;gap:18px;align-items:flex-start;transform:translateY(-130%);transition:transform .28s ease;border-bottom:1px solid rgba(167,176,240,.16)}
+  .nav-links.open{transform:none}
+  .menu-btn{display:block}
+  .nav-cta .btn:not(.menu-btn){display:none}
+  .hero-grid,.stats .wrap,.features .grid,.why .wrap,.reviews .grid,.buy .wrap,.contact .wrap{grid-template-columns:1fr}
+  .hero-art{order:-1;min-height:300px}
+  .features .grid,.reviews .grid{gap:18px}
+  section{padding:70px 0}
+}
+@media(max-width:560px){
+  .features .grid,.reviews .grid{grid-template-columns:1fr}
+  .stats .wrap{gap:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
