@@ -29,6 +29,7 @@
   var MIN_X=29, MAX_X=271; // drag range, clear of the band's rounded ends
   var PARALLAX_PX=90; // how far the eclipse disc slides across the moon
   var dragging=false;
+  var active=false; // true while the charm is off-center, via pointer or keyboard
   var curX=BASE_X;
   var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -51,6 +52,7 @@
 
   charm.addEventListener('pointerdown',function(e){
     dragging=true;
+    active=true;
     charm.classList.add('dragging');
     if(moonBig) moonBig.classList.add('dragging');
     charm.setPointerCapture(e.pointerId);
@@ -61,7 +63,8 @@
     setX(clientXToSvgX(e.clientX));
   });
   function release(){
-    if(!dragging) return;
+    if(!active) return;
+    active=false;
     dragging=false;
     charm.classList.remove('dragging');
     charm.setAttribute('aria-valuenow','0');
@@ -93,6 +96,7 @@
   charm.addEventListener('keydown',function(e){
     if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight') return;
     e.preventDefault();
+    active=true;
     setX(curX+(e.key==='ArrowLeft'?-14:14));
     clearTimeout(charm._snapTimer);
     charm._snapTimer=setTimeout(release,650);
